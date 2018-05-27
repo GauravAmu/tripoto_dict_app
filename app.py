@@ -13,28 +13,33 @@ def getDicwords():
 	print(typeofComparison)
 	response = constructableWords(inputString)
 	toShow = []
-
-	for word in response:
-		if typeofComparison == 'eq':
-			if(len(word)==int(lengthThreshold)) :
-				toShow.append(word)
-			else:
-				return 'no result found'
-		elif typeofComparison == 'lt':
-			if(len(word)<int(lengthThreshold)) :
-				toShow.append(word)
+	if lengthThreshold == '':
+		for word in response:
+			toShow.append(word)
+		toShow.sort()
+		return Response(",".join(toShow))
+	if lengthThreshold != '':
+		for word in response:
+			if typeofComparison == 'eq':
+				if(len(word)==int(lengthThreshold)) :
+					toShow.append(word)
+				else:
+					return 'no valid words found in dictionary'
+			elif typeofComparison == 'lt':
+				if(len(word)<int(lengthThreshold)) :
+					toShow.append(word)
+				else:
+					return 'no valid words found in dictionary'
+			elif typeofComparison == 'lte':
+				if(len(word)<=int(lengthThreshold)) :
+					toShow.append(word)
+				else:
+					return 'no valid words found in dictionary'
 			else:
 				print('no result found')
-		elif typeofComparison == 'lte':
-			if(len(word)<=int(lengthThreshold)) :
-				toShow.append(word)
-			else:
-				print('no result found')
-		else:
-			print('no result found')
-	toShow.sort()
-	print(*toShow)
-	return Response(",".join(toShow))
+		toShow.sort()
+		print(*toShow)
+		return Response(",".join(toShow))
 
 @app.route("/")
 def renderHomePage():
