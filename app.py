@@ -32,7 +32,7 @@ def getDicwords():
 				print('no valid words in dictionary')
 
 		if not toShow:
-			return 'no valid words in dictionary'
+			return 'no valid words found in dictionary'
 		
 		toShow.sort()
 		
