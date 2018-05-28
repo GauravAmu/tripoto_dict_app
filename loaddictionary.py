@@ -6,5 +6,4 @@ def load_dict(str):
 	words = list(data['words'])
 	ineligibleWords = [word for word in words if word[0] not in char_str]
 	eligibleWords = list(set(words) - set(ineligibleWords))
-	print(*eligibleWords)
 	return eligibleWords; 
